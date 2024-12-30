@@ -1,0 +1,47 @@
+package com.example.BookRetrieveSystem.Service.impl;
+
+import com.example.BookRetrieveSystem.Dao.BookDao;
+import com.example.BookRetrieveSystem.Dto.BookStatus;
+import com.example.BookRetrieveSystem.Dto.impl.BookDto;
+import com.example.BookRetrieveSystem.Service.BookService;
+import com.example.BookRetrieveSystem.Util.Mapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+@Service
+@Transactional
+public class BookServiceImpl implements BookService {
+    @Autowired
+    private BookDao bookDao;
+    @Autowired
+    private Mapping mapping;
+
+
+    @Override
+    public void saveBook(BookDto bookDto) {
+
+    }
+
+    @Override
+    public BookStatus getBook(String ISBN) {
+        return null;
+    }
+
+    @Override
+    public List<BookDto> getAllBooks() {
+        return null;
+    }
+
+    @Override
+    public void deleteBook(String ISBN) {
+
+    }
+
+    @Override
+    public void updateBook(String ISBN, BookDto bookDto) {
+
+    }
+}
