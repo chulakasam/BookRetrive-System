@@ -10,9 +10,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+
 
 public class UserEntity implements SuperEntity {
 

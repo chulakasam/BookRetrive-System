@@ -1,5 +1,6 @@
 package com.example.BookRetrieveSystem.Entity.impl;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -17,6 +18,7 @@ public class BookEntity {
     private String ISBN;
     private String title;
     private String author;
+    @Column(columnDefinition = "LONGTEXT")
     private String image;
     private String price;
 }
