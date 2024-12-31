@@ -1,7 +1,9 @@
 package com.example.BookRetrieveSystem.Util;
 
 import com.example.BookRetrieveSystem.Dto.impl.BookDto;
+import com.example.BookRetrieveSystem.Dto.impl.UserDto;
 import com.example.BookRetrieveSystem.Entity.impl.BookEntity;
+import com.example.BookRetrieveSystem.Entity.impl.UserEntity;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +27,15 @@ public class Mapping {
     }
     public List<BookEntity> toBookEntityList(List<BookDto> bookDTOList) {
         return modelMapper.map(bookDTOList,new TypeToken<List<BookEntity>>() {}.getType());
+    }
+
+    public UserEntity toUserEntity(UserDto userDTO){
+        return modelMapper.map(userDTO, UserEntity.class);
+    }
+    public UserDto toUserDTO(UserEntity userEntity){
+        return modelMapper.map(userEntity, UserDto.class);
+    }
+    public List<UserDto> asUserDTOList(List<UserEntity> userEntities) {
+        return modelMapper.map(userEntities, new TypeToken<List<UserDto>>() {}.getType());
     }
 }
