@@ -61,5 +61,10 @@ public class BookController {
         return bookService.getBook(ISBN);
     }
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<BookDto> getAllBooks(){
+        return bookService.getAllBooks();
+    }
+
 
 }

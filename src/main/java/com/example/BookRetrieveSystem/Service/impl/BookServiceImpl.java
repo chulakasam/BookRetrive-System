@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -42,7 +43,22 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> getAllBooks() {
-        return null;
+        List<BookEntity> books = bookDao.findAll();
+        return books.stream()
+                .map(book -> {
+                    BookDto bookDto = new BookDto();
+                    bookDto.setISBN(book.getISBN());
+                    bookDto.setTitle(book.getTitle());
+                    bookDto.setAuthor(book.getAuthor());
+                    bookDto.setImage(book.getImage());
+                    bookDto.setPrice(book.getPrice());
+
+
+                    return bookDto;
+                })
+                .collect(Collectors.toList());
+
+
     }
 
     @Override
