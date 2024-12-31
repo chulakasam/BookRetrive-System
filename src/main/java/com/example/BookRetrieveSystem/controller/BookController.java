@@ -1,6 +1,7 @@
 package com.example.BookRetrieveSystem.controller;
 
 
+import com.example.BookRetrieveSystem.Dto.BookStatus;
 import com.example.BookRetrieveSystem.Dto.impl.BookDto;
 import com.example.BookRetrieveSystem.Exception.DataPersistException;
 import com.example.BookRetrieveSystem.Service.BookService;
@@ -52,8 +53,12 @@ public class BookController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
 
 
+    @GetMapping(value = "/{ISBN}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public BookStatus getSelectedBook(@PathVariable ("ISBN") String ISBN){
+        return bookService.getBook(ISBN);
     }
 
 

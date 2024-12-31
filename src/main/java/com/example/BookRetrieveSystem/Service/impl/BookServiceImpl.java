@@ -32,7 +32,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookStatus getBook(String ISBN) {
-        return null;
+        if(bookDao.existsById(ISBN)){
+            BookEntity selectedBook = bookDao.getReferenceById(ISBN);
+            return mapping.toBookDTO(selectedBook);
+        }else {
+             throw new BookNotFoundException("Book not found !!!!");
+        }
     }
 
     @Override
