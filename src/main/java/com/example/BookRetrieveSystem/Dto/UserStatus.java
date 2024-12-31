@@ -1,4 +1,8 @@
 package com.example.BookRetrieveSystem.Dto;
 
-public interface UserStatus {
+import com.example.BookRetrieveSystem.SuperDTO;
+
+import java.io.Serializable;
+
+public interface UserStatus extends Serializable, SuperDTO {
 }
