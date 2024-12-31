@@ -3,6 +3,7 @@ package com.example.BookRetrieveSystem.controller;
 
 import com.example.BookRetrieveSystem.Dto.BookStatus;
 import com.example.BookRetrieveSystem.Dto.impl.BookDto;
+import com.example.BookRetrieveSystem.Exception.BookNotFoundException;
 import com.example.BookRetrieveSystem.Exception.DataPersistException;
 import com.example.BookRetrieveSystem.Service.BookService;
 import com.example.BookRetrieveSystem.Util.AppUtil;
@@ -64,6 +65,20 @@ public class BookController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<BookDto> getAllBooks(){
         return bookService.getAllBooks();
+    }
+
+    @DeleteMapping(value = "/{ISBN}")
+    public ResponseEntity<Void> deleteBook(@PathVariable("ISBN") String ISBN){
+        try {
+            bookService.deleteBook(ISBN);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }catch (BookNotFoundException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

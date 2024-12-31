@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,7 +64,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void deleteBook(String ISBN) {
-
+        Optional<BookEntity> selectedBook = bookDao.findById(ISBN);
+        if(!selectedBook.isPresent()){
+            throw new BookNotFoundException("Book not found!!!");
+        }else{
+            bookDao.deleteById(ISBN);
+        }
     }
 
     @Override
