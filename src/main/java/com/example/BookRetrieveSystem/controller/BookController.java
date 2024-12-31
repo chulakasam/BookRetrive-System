@@ -81,5 +81,19 @@ public class BookController {
         }
     }
 
+    @PutMapping(value = "/{ISBN}")
+    public ResponseEntity<Void> updateBook(@PathVariable("ISBN") String ISBN, @RequestBody BookDto bookDto) {
+        try {
+            bookService.updateBook(ISBN, bookDto);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (BookNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }

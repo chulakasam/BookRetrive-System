@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -74,6 +75,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void updateBook(String ISBN, BookDto bookDto) {
-
+        Optional<BookEntity> bookEntity = bookDao.findById(ISBN);
+        if(!bookEntity.isPresent()){
+            throw new BookNotFoundException("Book not found !!!!");
+        }else{
+            BookEntity entity = bookEntity.get();
+            entity.setTitle(bookDto.getTitle());
+            entity.setAuthor(bookDto.getAuthor());
+            entity.setPrice(bookDto.getPrice());
+            bookDao.save(entity);
+        }
     }
 }
