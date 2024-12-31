@@ -1,4 +1,4 @@
 package com.example.BookRetrieveSystem;
 
-public class SuperDTO {
+public interface SuperDTO {
 }

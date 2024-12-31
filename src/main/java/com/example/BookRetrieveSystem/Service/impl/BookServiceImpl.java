@@ -3,6 +3,8 @@ package com.example.BookRetrieveSystem.Service.impl;
 import com.example.BookRetrieveSystem.Dao.BookDao;
 import com.example.BookRetrieveSystem.Dto.BookStatus;
 import com.example.BookRetrieveSystem.Dto.impl.BookDto;
+import com.example.BookRetrieveSystem.Entity.impl.BookEntity;
+import com.example.BookRetrieveSystem.Exception.BookNotFoundException;
 import com.example.BookRetrieveSystem.Service.BookService;
 import com.example.BookRetrieveSystem.Util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void saveBook(BookDto bookDto) {
-
+        BookEntity bookEntity = bookDao.save(mapping.toBookEntity(bookDto));
+        if(bookEntity==null){
+            throw new BookNotFoundException("Book not found !!!!");
+        }
     }
 
     @Override
